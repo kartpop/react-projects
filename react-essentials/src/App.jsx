@@ -1,11 +1,16 @@
+import { useState } from "react";
+
 import Header from "./components/Header/Header";
 import CoreConcept from "./components/CoreConcept";
 import { CORE_CONCEPTS } from "./data";
 import TabButton from "./components/TabButton";
 
 function App() {
+  const [selectedTopic, setSelectedTopic] = useState('Please select a topic');
+
   function handleSelect(selectedButton) {
-    console.log(selectedButton);
+    setSelectedTopic(selectedButton)
+    console.log(selectedTopic); // will print the previous value of selectedTopic, as React schedules state updates AFTER the component has reloaded
   }
 
   return (
@@ -33,6 +38,7 @@ function App() {
             <TabButton onSelect={() => handleSelect('props')}>Props</TabButton>
             <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
           </menu>
+          <p>{selectedTopic}</p>
         </section>
       </main>
     </div>
