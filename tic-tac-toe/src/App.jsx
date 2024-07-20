@@ -2,6 +2,13 @@ import { useState } from "react";
 import GameBoard from "./components/GameBoard";
 import Player from "./components/Player";
 import Log from "./components/Log";
+import { WINNING_COMBINATIONS } from "./winning-combinations";
+
+const board = [
+  [null, null, null],
+  [null, null, null],
+  [null, null, null],
+];
 
 function deriveActivePlayer(turns) {
   let currentPlayer = "X"; 
@@ -16,6 +23,24 @@ function deriveActivePlayer(turns) {
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
   const activePlayer = deriveActivePlayer(gameTurns);
+
+  for (const turn of gameTurns) {
+    const { square, player } = turn;
+    const { row, col } = square;
+
+    board[row][col] = player;
+  }
+
+  let winner = null;
+  for (const combination of WINNING_COMBINATIONS) {
+    const firstSquare = board[combination[0].row][combination[0].column];
+    const secondSquare = board[combination[1].row][combination[1].column];
+    const thirdSquare = board[combination[2].row][combination[2].column];
+
+    if (firstSquare && firstSquare === secondSquare && firstSquare === thirdSquare) {
+      winner = firstSquare;
+    }
+  }
 
   function handleSelectSquare(rowIdx, colIdx) {
     setGameTurns((currTurns) => {
@@ -37,9 +62,10 @@ function App() {
           <Player name="Player 1" symbol="X" isActive={activePlayer === "X"} />
           <Player name="Player 2" symbol="O" isActive={activePlayer === "O"} />
         </ol>
+        {winner && <p>{`Player ${winner} wins!`}</p>}
         <GameBoard
           onCellClick={handleSelectSquare}
-          turns={gameTurns}
+          board={board}
         ></GameBoard>
       </div>
       <Log turns={gameTurns}></Log>

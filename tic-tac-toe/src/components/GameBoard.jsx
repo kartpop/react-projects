@@ -1,16 +1,4 @@
-const board = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
-
-export default function GameBoard({ onCellClick, turns }) {
-  for (const turn of turns) {
-    const { square, player } = turn;
-    const { row, col } = square;
-
-    board[row][col] = player;
-  }
+export default function GameBoard({ onCellClick, board }) {
 
   function handleCellClick(rowIndex, colIndex) {
     onCellClick(rowIndex, colIndex);
