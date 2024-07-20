@@ -25,7 +25,7 @@ function App() {
   const [gameTurns, setGameTurns] = useState([]);
   const activePlayer = deriveActivePlayer(gameTurns);
 
-  let board = [...initialBoard.map(row => [...row])];
+  let board = [...initialBoard.map(row => [...row])];  // so that initialBoard is not mutated and can be used on reset
 
   for (const turn of gameTurns) {
     const { square, player } = turn;
