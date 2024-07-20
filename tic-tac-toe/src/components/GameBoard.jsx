@@ -16,7 +16,7 @@ export default function GameBoard({ onCellClick, activePlayerSymbol }) {
       return updatedBoard;
     });
 
-    onCellClick();
+    onCellClick(rowIndex, colIndex);
   }
 
   return (
