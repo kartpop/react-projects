@@ -3,6 +3,7 @@ import GameBoard from "./components/GameBoard";
 import Player from "./components/Player";
 import Log from "./components/Log";
 import { WINNING_COMBINATIONS } from "./winning-combinations";
+import GameOver from "./components/GameOver";
 
 const board = [
   [null, null, null],
@@ -55,6 +56,8 @@ function App() {
     });
   }
 
+  const isDraw = gameTurns.length === 9 && !winner;
+
   return (
     <main>
       <div id="game-container">
@@ -62,7 +65,7 @@ function App() {
           <Player name="Player 1" symbol="X" isActive={activePlayer === "X"} />
           <Player name="Player 2" symbol="O" isActive={activePlayer === "O"} />
         </ol>
-        {winner && <p>{`Player ${winner} wins!`}</p>}
+        {(winner || isDraw) && <GameOver winner={winner}></GameOver>}
         <GameBoard
           onCellClick={handleSelectSquare}
           board={board}
