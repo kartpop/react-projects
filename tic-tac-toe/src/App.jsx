@@ -4,14 +4,14 @@ import Player from "./components/Player";
 
 function App() {
   const [activePlayer, setActivePlayer] = useState("X");
-  const [turns, setTurns] = useState([]);
+  const [gameTurns, setGameTurns] = useState([]);
 
   function handleSelectSquare(rowIdx, colIdx) {
     setActivePlayer((currActivePlayer) => {
       return currActivePlayer === "X" ? "O" : "X";
     });
 
-    setTurns((currTurns) => {
+    setGameTurns((currTurns) => {
       let currentPlayer = "X"; // cannot use activePlayer here as that state is being updated asynchronously
 
       if (currTurns.length > 0 && currTurns[0].player === "X") {
@@ -36,7 +36,7 @@ function App() {
         </ol>
         <GameBoard
           onCellClick={handleSelectSquare}
-          activePlayerSymbol={activePlayer}
+          turns={gameTurns}
         ></GameBoard>
       </div>
     </main>
