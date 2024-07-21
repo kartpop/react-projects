@@ -1,23 +1,28 @@
-export default function Result() {
+import { formatter } from "../util/investment";
+
+export default function Result({ annualData }) {
   return (
     <div id="result">
       <table>
         <thead>
           <tr>
-            <th>Column 1</th>
-            <th>Column 2</th>
-            <th>Column 3</th>
-            <th>Column 4</th>
+            <th>Year</th>
+            <th>Investment Value</th>
+            <th>Interest (Year)</th>
+            <th>Total Interest</th>
+            <th>Invested Capital</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Data 1</td>
-            <td>Data 2</td>
-            <td>Data 3</td>
-            <td>Data 4</td>
-          </tr>
-          {/* Add more <tr>...</tr> here for more data rows */}
+          {annualData.map((data) => ( 
+            <tr key={data.year}>
+              <td>{data.year}</td>
+              <td>{formatter.format(data.valueEndOfYear)}</td>
+              <td>{formatter.format(data.interest)}</td>
+              <td>{formatter.format(data.totalInterest)}</td>
+              <td>{formatter.format(data.investedCaptial)}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

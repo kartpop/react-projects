@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Result from "./components/Result";
 import UserInput from "./components/UserInput";
+import { calculateInvestmentResults, formatter } from "./util/investment";
 
 function App() {
   const [initialInvestment, setInitialInvestment] = useState(15000);
@@ -10,23 +11,26 @@ function App() {
 
   function handleInitialInvestmentChange(event) {
     setInitialInvestment(parseInt(event.target.value));
-    console.log(event.target.value);
   }
 
   function handleAnnualInvestmentChange(event) {
     setAnnualInvestment(parseInt(event.target.value));
-    console.log(event.target.value);
   }
 
   function handleExpectedReturnChange(event) {
     setExpectedReturn(parseFloat(event.target.value));
-    console.log(event.target.value);
   }
 
   function handleDurationChange(event) {
     setDuration(parseInt(event.target.value));
-    console.log(event.target.value);
   }
+
+  const annualData = calculateInvestmentResults({
+    initialInvestment,
+    annualInvestment,
+    expectedReturn,
+    duration,
+  });
 
   return (
     <main>
@@ -60,7 +64,7 @@ function App() {
           ></UserInput>
         </ol>
       </div>
-      <Result></Result>
+      <Result annualData={annualData}></Result>
     </main>
   );
 }
