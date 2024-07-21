@@ -43,6 +43,8 @@ header h1 {
   display: flex;
   justify-content: space-evenly;
   gap: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 #user-input label {
