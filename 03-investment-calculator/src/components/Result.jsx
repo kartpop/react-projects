@@ -1,4 +1,4 @@
-import { formatter } from "../util/investment";
+import { formatter, formatIndianCurrency } from "../util/investment";
 
 export default function Result({ annualData }) {
   return (
@@ -17,10 +17,10 @@ export default function Result({ annualData }) {
           {annualData.map((data) => ( 
             <tr key={data.year}>
               <td>{data.year}</td>
-              <td>{formatter.format(data.valueEndOfYear)}</td>
-              <td>{formatter.format(data.interest)}</td>
-              <td>{formatter.format(data.totalInterest)}</td>
-              <td>{formatter.format(data.investedCaptial)}</td>
+              <td>{formatIndianCurrency(data.valueEndOfYear)}</td>
+              <td>{formatIndianCurrency(data.interest)}</td>
+              <td>{formatIndianCurrency(data.totalInterest)}</td>
+              <td>{formatIndianCurrency(data.investedCaptial)}</td>
             </tr>
           ))}
         </tbody>
