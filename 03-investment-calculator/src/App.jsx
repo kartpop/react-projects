@@ -10,19 +10,19 @@ function App() {
   const [duration, setDuration] = useState(12);
 
   function handleInitialInvestmentChange(event) {
-    setInitialInvestment(parseInt(event.target.value));
+    setInitialInvestment(+event.target.value);  // can use + to convert string to number
   }
 
-  function handleAnnualInvestmentChange(event) {
-    setAnnualInvestment(parseInt(event.target.value));
+  function handleAnnualInvestmentChange(event) { 
+    setAnnualInvestment(+event.target.value);   
   }
 
   function handleExpectedReturnChange(event) {
-    setExpectedReturn(parseFloat(event.target.value));
+    setExpectedReturn(parseFloat(event.target.value));  // can use parseFloat to convert string to float
   }
 
   function handleDurationChange(event) {
-    setDuration(parseInt(event.target.value));
+    setDuration(parseInt(event.target.value));  // can use parseInt to convert string to integer
   }
 
   const annualData = calculateInvestmentResults({
