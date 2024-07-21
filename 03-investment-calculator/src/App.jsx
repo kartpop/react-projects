@@ -10,20 +10,23 @@ function App() {
   const [duration, setDuration] = useState(12);
 
   function handleInitialInvestmentChange(event) {
-    setInitialInvestment(+event.target.value);  // can use + to convert string to number
+    setInitialInvestment(+event.target.value); // can use + to convert string to number
   }
 
-  function handleAnnualInvestmentChange(event) { 
-    setAnnualInvestment(+event.target.value);   
+  function handleAnnualInvestmentChange(event) {
+    setAnnualInvestment(+event.target.value);
   }
 
   function handleExpectedReturnChange(event) {
-    setExpectedReturn(parseFloat(event.target.value));  // can use parseFloat to convert string to float
+    setExpectedReturn(parseFloat(event.target.value)); // can use parseFloat to convert string to float
   }
 
   function handleDurationChange(event) {
-    setDuration(parseInt(event.target.value));  // can use parseInt to convert string to integer
+    setDuration(parseInt(event.target.value)); // can use parseInt to convert string to integer
   }
+
+  const isInputValid =
+    annualInvestment > 0 && expectedReturn > 0 && duration > 0;
 
   const annualData = calculateInvestmentResults({
     initialInvestment,
@@ -34,7 +37,7 @@ function App() {
 
   return (
     <main>
-      <div id="user-input">
+      <div id="user-input" className="center">
         <ol className="input-group">
           <UserInput
             label="Initial Investment"
@@ -64,7 +67,10 @@ function App() {
           ></UserInput>
         </ol>
       </div>
-      <Result annualData={annualData}></Result>
+      <div className="center">
+        {isInputValid && <Result annualData={annualData}></Result>}
+        {!isInputValid && <p>Please enter valid input</p>}
+      </div>
     </main>
   );
 }
