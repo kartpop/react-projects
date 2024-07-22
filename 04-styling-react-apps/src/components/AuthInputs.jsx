@@ -2,7 +2,6 @@ import { useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
 
-
 export default function AuthInputs() {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
@@ -24,7 +23,10 @@ export default function AuthInputs() {
   const passwordNotValid = submitted && enteredPassword.trim().length < 6;
 
   return (
-    <div id="auth-inputs" className="w-full max-w-sm p-8 mx-auto rounded shadow-md bg-gradient-to-b from-stone-700 to-stone-800">
+    <div
+      id="auth-inputs"
+      className="w-full max-w-sm p-8 mx-auto rounded shadow-md bg-gradient-to-b from-stone-700 to-stone-800"
+    >
       <div className="flex flex-col gap-2 mb-6">
         <Input
           type="email"
@@ -45,9 +47,7 @@ export default function AuthInputs() {
         <button type="button" className="text-amber-400 hover:text-amber-500">
           Create a new account
         </button>
-        <Button onClick={handleLogin}>
-          Sign In
-        </Button>
+        <Button onClick={handleLogin}>Sign In</Button>
       </div>
     </div>
   );
