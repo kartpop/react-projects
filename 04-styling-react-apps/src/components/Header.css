@@ -7,7 +7,7 @@ header {
     margin-bottom: 2rem;
   }
   
-  header img {
+  header img { /*  element selector - img element in header */
     object-fit: contain;
     margin-bottom: 2rem;
     width: 11rem;

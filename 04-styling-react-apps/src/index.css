@@ -25,7 +25,7 @@ button:focus {
   outline: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) {  /*  media query - targets devices with a viewport width > 768 pixels */
   header {
     margin-bottom: 4rem;
   }
@@ -35,7 +35,7 @@ button:focus {
   }
 }
 
-#auth-inputs {
+#auth-inputs {  /*  element with id auth-inputs */
   width: 100%;
   max-width: 28rem;
   padding: 2rem;
@@ -53,7 +53,7 @@ button:focus {
   margin-bottom: 1.5rem;
 }
 
-.controls label {
+.controls label {   /*  label elements which are descendent of elements with class name controls */
   display: block;
   margin-bottom: 0.5rem;
   font-size: 0.75rem;
@@ -74,11 +74,11 @@ button:focus {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
-.label.invalid {
+.label.invalid {   /*  all elements with both label and invalid class names */
   color: #f87171;
 }
 
-input.invalid {
+input.invalid {   /*  input element with class name invalid */
   color: #ef4444;
   border-color: #f73f3f;
   background-color: #fed2d2;
