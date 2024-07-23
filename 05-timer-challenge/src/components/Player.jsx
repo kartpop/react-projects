@@ -2,10 +2,11 @@ import { useState, useRef } from "react";
 
 export default function Player() {
   const [enteredName, setEnteredName] = useState("unknown entity");
-  const name = useRef();  // gives access to the jsx element and all its props where this ref is set
+  const name = useRef(); // gives access to the jsx element and all its props where this ref is set
 
   function handleClick() {
     setEnteredName(name.current.value);
+    name.current.value = "";
   }
 
   return (
