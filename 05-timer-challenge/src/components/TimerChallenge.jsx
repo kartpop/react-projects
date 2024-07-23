@@ -5,19 +5,26 @@ export default function TimerChallenge({ title, targetTime }) {
   const timer = useRef();
   const dialog = useRef();
 
-  const [timerStarted, setTimerStarted] = useState(false);
+  const [timeRemaining, setTimeRemaining] = useState(1000 * targetTime);
 
   function handleStart() {
-    timer.current = setTimeout(() => {
-      dialog.current.open();
-    }, targetTime * 1000);
-
-    setTimerStarted(true);
+    timer.current = setInterval(() => {
+      setTimeRemaining((prev) => {
+        return prev - 10;
+      });
+    }, 10);
   }
 
   function handleStop() {
-    clearTimeout(timer.current);
-    setTimerStarted(false);
+    dialog.current.open();
+    clearInterval(timer.current);
+  }
+
+  const timerActive = timeRemaining > 0 && timeRemaining < 1000 * targetTime;
+  if (timeRemaining <= 0) {
+    clearInterval(timer.current);
+    setTimeRemaining(1000 * targetTime);
+    dialog.current.open();
   }
 
   return (
@@ -29,12 +36,12 @@ export default function TimerChallenge({ title, targetTime }) {
           {targetTime} second{targetTime > 1 ? "s" : ""}
         </p>
         <p>
-          <button onClick={timerStarted ? handleStop : handleStart}>
-            {timerStarted ? "Stop" : "Start"} Challenge
+          <button onClick={timerActive ? handleStop : handleStart}>
+            {timerActive ? "Stop" : "Start"} Challenge
           </button>
         </p>
-        <p className={timerStarted ? "active" : undefined}>
-          {timerStarted ? "Time is running...." : "Timer inactive"}
+        <p className={timerActive ? "active" : undefined}>
+          {timerActive ? "Time is running...." : "Timer inactive"}
         </p>
       </section>
     </>
