@@ -15,7 +15,7 @@ const ResultModal = forwardRef(function ResultModal(
   }));
 
   return (
-    <dialog ref={dialog} className="result-modal">
+    <dialog ref={dialog} className="result-modal" onClose={onResetTime}>
       {isLost && <h2>You lost</h2>}
       {!isLost && <h2>You won! Your score: {score}</h2>}
       <p>Target time: {targetTime} seconds</p>
