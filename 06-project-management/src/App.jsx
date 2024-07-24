@@ -1,17 +1,24 @@
 import { useState } from "react";
 import CreateProject from "./components/CreateProject";
+import Project from "./components/Project";
 
 function App() {
   const [newProjectActive, setNewProjectActive] = useState(false);
-  const [projects, setProjects] = useState([]);
+  const [projectList, setProjectList] = useState([]);
+  const [activeProject, setActiveProject] = useState(null);
 
   const handleAddProjectCick = () => {
+    setActiveProject(null); // todo - not sure if this will work
     setNewProjectActive(true);
   };
 
   const handleNewProjectCreated = ({ title, description, dueDate }) => {
-    setProjects([...projects, { title, description, dueDate }]);
+    setProjectList([...projectList, { title, description, dueDate }]);
     setNewProjectActive(false);
+  };
+
+  const handleProjectClick = (project) => {
+    setActiveProject(project);
   };
 
   return (
@@ -31,9 +38,13 @@ function App() {
             </button>
           </div>
           <div className="p-4">
-            {projects.map((project, index) => (
-              <div key={index} className="border border-slate-500 p-2 m-2">
-                <h3 className="text-white text-left font-bold text-lg">
+            {projectList.map((project, index) => (
+              <div
+                key={index}
+                className="p-2 m-2"
+                onClick={() => handleProjectClick(project)}
+              >
+                <h3 className="text-white text-left text-lg">
                   {project.title}
                 </h3>
               </div>
@@ -43,6 +54,13 @@ function App() {
         <div className="w-3/4 bg-white h-screen p-4">
           {newProjectActive && (
             <CreateProject onSave={handleNewProjectCreated}></CreateProject>
+          )}
+          {activeProject && (
+            <Project
+              title={activeProject.title}
+              description={activeProject.description}
+              date={activeProject.date}
+            ></Project>
           )}
         </div>
       </div>
