@@ -1,0 +1,12 @@
+Notes on differences between self solution and instructor solution:
+
+- <aside> element for Project sidebar parent: helps with semantic markup, making the structure of the page clearer to not just developers, but also search engines and assistive technologies like screen readers.
+
+- <menu> element for Cancel/Save buttons in Create new project component - limited support in browsers. Therefore <ul> or <div> elems with appropriate ARIA (??) roles and properties are often preferred to create menus and buttons. 
+    - ARIA - Accessible rich internet applications
+            - landmark roles for navigation - nav, main, aside     
+            - widget roles for types of interaction available - button, link, menu, menuitem
+            - document structure roles to help understand the structure of the document- article, heading, list, listitem 
+            - application roles to distinguish from standard web content - application element indicates that the web app inside has its own keyboard navigation etc.
+
+- 
