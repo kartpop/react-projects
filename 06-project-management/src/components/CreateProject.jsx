@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import LabelInput from "./LabelInput";
 
-export default function CreateProject({ onSave }) {
+export default function CreateProject({ onSave, onCancel }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
@@ -24,10 +24,16 @@ export default function CreateProject({ onSave }) {
     onSave({ title, description, dueDate, tasks });
   }
 
+  function handleCancel() {
+    onCancel();
+  }
+
   return (
     <>
       <div className="flex justify-end m-2">
-        <button className="m-2">Cancel</button>
+        <button className="m-2" onClick={handleCancel}>
+          Cancel
+        </button>
         <button className="m-2" onClick={handleSave}>
           Save
         </button>

@@ -17,6 +17,10 @@ function App() {
     setNewProjectActive(false);
   };
 
+  const handleCancelNewProjectCreation = () => {
+    setNewProjectActive(false);
+  };
+
   const handleProjectClick = (projectTitle) => {
     setActiveProjectTitle(projectTitle);
   };
@@ -65,7 +69,9 @@ function App() {
             {projectList.map((project, index) => (
               <div
                 key={index}
-                className={`p-2 m-2 hover:bg-gray-700 ${activeProjectTitle === project.title ? 'bg-slate-500' : ''}`}
+                className={`p-2 m-2 hover:bg-gray-700 ${
+                  activeProjectTitle === project.title ? "bg-slate-500" : ""
+                }`}
                 onClick={() => handleProjectClick(project.title)}
               >
                 <h3 className="text-white text-left text-lg">
@@ -77,7 +83,10 @@ function App() {
         </div>
         <div className="w-3/4 bg-white h-screen p-4">
           {newProjectActive && (
-            <CreateProject onSave={handleNewProjectCreated}></CreateProject>
+            <CreateProject
+              onSave={handleNewProjectCreated}
+              onCancel={handleCancelNewProjectCreation}
+            ></CreateProject>
           )}
           {activeProjectTitle && (
             <Project
