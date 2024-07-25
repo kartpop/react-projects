@@ -32,6 +32,15 @@ function App() {
     setProjectList(updatedProjectList);
   };
 
+  const handleDeleteProject = () => {
+    const updatedProjectList = projectList.filter(
+      (project) => project.title !== activeProjectTitle
+    );
+
+    setProjectList(updatedProjectList);
+    setActiveProjectTitle(null);
+  };
+
   let activeProject = projectList.find(
     (project) => project.title === activeProjectTitle
   );
@@ -47,7 +56,7 @@ function App() {
             <div className="p-2"></div>
             <button
               onClick={handleAddProjectCick}
-              className="py-2 px-4 bg-slate-500 text-white"
+              className="py-2 px-4 bg-slate-700 text-white"
             >
               + Add Project
             </button>
@@ -56,7 +65,7 @@ function App() {
             {projectList.map((project, index) => (
               <div
                 key={index}
-                className="p-2 m-2"
+                className={`p-2 m-2 hover:bg-gray-700 ${activeProjectTitle === project.title ? 'bg-slate-500' : ''}`}
                 onClick={() => handleProjectClick(project.title)}
               >
                 <h3 className="text-white text-left text-lg">
@@ -74,9 +83,10 @@ function App() {
             <Project
               title={activeProject.title}
               description={activeProject.description}
-              date={activeProject.date}
+              date={activeProject.dueDate}
               tasks={activeProject.tasks}
               onChangeTasks={handleTasksChange}
+              onDelete={handleDeleteProject}
             ></Project>
           )}
         </div>
