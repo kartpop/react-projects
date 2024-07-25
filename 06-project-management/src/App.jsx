@@ -67,9 +67,9 @@ function App() {
           </div>
           <div className="p-4">
             {projectList.map((project, index) => (
-              <div
+              <button
                 key={index}
-                className={`p-2 m-2 hover:bg-gray-700 ${
+                className={`p-2 m-2 w-72 hover:bg-gray-700 ${
                   activeProjectTitle === project.title ? "bg-slate-500" : ""
                 }`}
                 onClick={() => handleProjectClick(project.title)}
@@ -77,7 +77,7 @@ function App() {
                 <h3 className="text-white text-left text-lg">
                   {project.title}
                 </h3>
-              </div>
+              </button>
             ))}
           </div>
         </div>
