@@ -1,22 +1,21 @@
 import { useState } from "react";
 
-export default function Tasks( {currentTasks, onChange}) {
+export default function Tasks({ currentTasks, onChange }) {
   const [newTask, setNewTask] = useState("");
-  const [taskList, setTaskList] = useState(currentTasks || []);
 
   function handleTaskChange(e) {
     setNewTask(e.target.value);
   }
 
   function handleAddTask() {
-    setTaskList([...taskList, newTask]);
+    let newTaskList = [...currentTasks, newTask];
     setNewTask("");
-    onChange(taskList);
+    onChange(newTaskList);
   }
 
   return (
     <div>
-        <h6 className="text-slate-500 text-left font-bold text-2xl">Tasks</h6>
+      <h6 className="text-slate-500 text-left font-bold text-2xl">Tasks</h6>
       <div className="flex">
         <input
           type="text"
@@ -29,7 +28,7 @@ export default function Tasks( {currentTasks, onChange}) {
         </button>
       </div>
       <div>
-        {taskList.map((task, index) => (
+        {currentTasks.map((task, index) => (
           <div key={index} className="p-2 m-2">
             <p>{task}</p>
           </div>

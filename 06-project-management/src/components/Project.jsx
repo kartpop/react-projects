@@ -1,11 +1,14 @@
-import { useState } from "react";
 import Tasks from "./Tasks";
 
-export default function Project({ title, date, description }) {
-  const [taskList, setTaskList] = useState([]);
-
+export default function Project({
+  title,
+  date,
+  description,
+  tasks,
+  onChangeTasks,
+}) {
   function handleTaskChange(newTaskList) {
-    setTaskList(newTaskList);
+    onChangeTasks(newTaskList);
   }
 
   return (
@@ -14,8 +17,7 @@ export default function Project({ title, date, description }) {
       <p className="text-black text-left text-sm">{date}</p>
       <p className="text-black text-left">{description}</p>
       <hr className="my-4 border-gray-300" />
-
-      <Tasks currentTasks={taskList} onChange={handleTaskChange}></Tasks>
+      <Tasks currentTasks={tasks} onChange={handleTaskChange}></Tasks>
     </div>
   );
 }

@@ -6,6 +6,7 @@ export default function CreateProject({ onSave }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
+  let tasks = [];
 
   function handleTitleChange(e) {
     setTitle(e.target.value);
@@ -20,7 +21,7 @@ export default function CreateProject({ onSave }) {
   }
 
   function handleSave() {
-    onSave({ title, description, dueDate });
+    onSave({ title, description, dueDate, tasks });
   }
 
   return (

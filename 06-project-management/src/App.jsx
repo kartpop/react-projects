@@ -1,25 +1,40 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import CreateProject from "./components/CreateProject";
 import Project from "./components/Project";
 
 function App() {
   const [newProjectActive, setNewProjectActive] = useState(false);
   const [projectList, setProjectList] = useState([]);
-  const [activeProject, setActiveProject] = useState(null);
+  const [activeProjectTitle, setActiveProjectTitle] = useState(null);
 
   const handleAddProjectCick = () => {
-    setActiveProject(null); // todo - not sure if this will work
+    setActiveProjectTitle(null);
     setNewProjectActive(true);
   };
 
-  const handleNewProjectCreated = ({ title, description, dueDate }) => {
-    setProjectList([...projectList, { title, description, dueDate }]);
+  const handleNewProjectCreated = ({ title, description, dueDate, tasks }) => {
+    setProjectList([...projectList, { title, description, dueDate, tasks }]);
     setNewProjectActive(false);
   };
 
-  const handleProjectClick = (project) => {
-    setActiveProject(project);
+  const handleProjectClick = (projectTitle) => {
+    setActiveProjectTitle(projectTitle);
   };
+
+  const handleTasksChange = (tasks) => {
+    const updatedProjectList = projectList.map((project) => {
+      if (project.title === activeProjectTitle) {
+        return { ...project, tasks };
+      }
+      return project;
+    });
+
+    setProjectList(updatedProjectList);
+  };
+
+  let activeProject = projectList.find(
+    (project) => project.title === activeProjectTitle
+  );
 
   return (
     <>
@@ -42,7 +57,7 @@ function App() {
               <div
                 key={index}
                 className="p-2 m-2"
-                onClick={() => handleProjectClick(project)}
+                onClick={() => handleProjectClick(project.title)}
               >
                 <h3 className="text-white text-left text-lg">
                   {project.title}
@@ -55,11 +70,13 @@ function App() {
           {newProjectActive && (
             <CreateProject onSave={handleNewProjectCreated}></CreateProject>
           )}
-          {activeProject && (
+          {activeProjectTitle && (
             <Project
               title={activeProject.title}
               description={activeProject.description}
               date={activeProject.date}
+              tasks={activeProject.tasks}
+              onChangeTasks={handleTasksChange}
             ></Project>
           )}
         </div>
