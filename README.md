@@ -5,3 +5,5 @@ Projects from [React - The Complete Guide](https://www.udemy.com/course/react-th
 - [03-investment-calculator](/03-investment-calculator/): practice project
 - [04-sytling-react-apps](/04-styling-react-apps/): working with css - modules, styled components, tailwind
 - [05-timer-challenge](./05-timer-challenge/): refs and portals
+- [06-project-management](./06-project-management/): practice project
+- [07-shopping-cart](./07-shopping-cart/): Context API, useReducer
