@@ -1,6 +1,7 @@
 import { useState } from "react";
 import QUESTIONS from "../questions";
 import quizcomplete from "../assets/quiz-complete.png";
+import QuizTimer from "./QuizTimer";
 
 export default function Quiz() {
   const [userAnswers, setUserAnswers] = useState([]);
@@ -26,6 +27,7 @@ export default function Quiz() {
   return (
     <div id="quiz">
       <div id="question">
+        <QuizTimer timeout={10000} onTimeout={() => handleAnswerClick(null)} />
         <h2>{QUESTIONS[qIdx].text}</h2>
       </div>
       <div id="answers">
