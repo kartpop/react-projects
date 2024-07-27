@@ -32,7 +32,11 @@ export default function Quiz() {
   return (
     <div id="quiz">
       <div id="question">
-        <QuizTimer timeout={10000} onTimeout={() => handleSkipAnswer(null)} />
+        <QuizTimer
+          key={qIdx}
+          timeout={10000}
+          onTimeout={() => handleSkipAnswer(null)}
+        />
         <h2>{QUESTIONS[qIdx].text}</h2>
       </div>
       <div id="answers">
