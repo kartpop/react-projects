@@ -14,8 +14,8 @@ export default function Quiz() {
   // 2. Set answerState to 'correct' or 'wrong' after 1 second - green or red
   // 3. Reset answerState to '' after 2 seconds - so that qIdx is set to next question
   const handleAnswerClick = useCallback(function handleAnswerClick(answer) {
-    setAnswerState("answered");
     setUserAnswers((prevAnswers) => [...prevAnswers, answer]);
+    setAnswerState("answered");
 
     setTimeout(() => {
       if (answer === QUESTIONS[qIdx].answers[0]) {
@@ -28,7 +28,7 @@ export default function Quiz() {
         setAnswerState("");
       }, 2000);
     }, 1000);
-  }, []);
+  }, [qIdx]);
 
   const handleSkipAnswer = useCallback(
     () => handleAnswerClick(null),
