@@ -22,3 +22,7 @@
     - also for this reason, index is not a very good choice for a key: if we add or remove items from the list, the element in the list that we actually intend to be selected/highlighted/focussed on may be lost because its index changed; key should rather be a value that uniquely identifies the element (like UUID say)
     - when an index is used as key, the entire list will have to be re-rendered even on the browser DOM because the key for all elements change when we insert an element in front of the list; when using a unique key, only that single element which was recently updated needs to be rendered
     - nice side-effect/pattern: use key reset to cause a component to intentionally re-render
+
+- React performs state batching
+    - multiple state updates in a single component may not cause multiple renders of the component; instead React batches all the state updates that happen in one execution flow and renders component as few times as possible (once is the best)
+    - also therefore, when we do setState using useState, that state is not available right after in the next line; setState registers a state update, but does not perform it synchronously; that is why we use the setState((previousState) => previousState + 1) sort of update when we depend on the previousState to compute the nextState
