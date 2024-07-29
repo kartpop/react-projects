@@ -7,3 +7,6 @@ Projects from [React - The Complete Guide](https://www.udemy.com/course/react-th
 - [05-timer-challenge](./05-timer-challenge/): refs and portals
 - [06-project-management](./06-project-management/): practice project
 - [07-shopping-cart](./07-shopping-cart/): Context API, useReducer
+- [08-place-picker](./08-place-picker/): useEffect, useCallback
+- [09-quiz-app](./09-quiz-app/): practice project - deep dive into state-management
+
