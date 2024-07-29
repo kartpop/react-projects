@@ -9,4 +9,5 @@ Projects from [React - The Complete Guide](https://www.udemy.com/course/react-th
 - [07-shopping-cart](./07-shopping-cart/): Context API, useReducer
 - [08-place-picker](./08-place-picker/): useEffect, useCallback
 - [09-quiz-app](./09-quiz-app/): practice project - deep dive into state-management
+- [10-react-behind-the-scenes](./10-react-behind-the-scenes): Notes on React and some of its optimization techniques
 

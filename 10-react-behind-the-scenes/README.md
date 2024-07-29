@@ -1,0 +1,1 @@
+[Notes](./notes.md) on React and its Optimization Techniques 
