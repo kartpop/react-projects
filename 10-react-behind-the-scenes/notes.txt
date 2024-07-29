@@ -15,7 +15,9 @@
     - browser DOM changes are expensive, this strategy reduces expensive updates
     - therefore, just because a component is rerendered does not mean that the corresponding html elements in it and in all its children are actually updated in the real DOM; only the necessary ones are
 
-- React tracks state by component type and also position of that component in the component tree
+- Why keys are so important?
+    - React tracks state by component type and also position of that component in the component tree
     - this typically only happens when there are sibling instances nearby on the DOM (like in lists)
     - therefore React makes it compulsory to provide keys when mapping list elements
     - also for this reason, index is not a very good choice for a key: if we add or remove items from the list, the element in the list that we actually intend to be selected/highlighted/focussed on may be lost because its index changed; key should rather be a value that uniquely identifies the element (like UUID say)
+    - when an index is used as key, the entire list will have to be re-rendered even on the browser DOM because the key for all elements change when we insert an element in front of the list; when using a unique key, only that single element which was recently updated needs to be rendered
