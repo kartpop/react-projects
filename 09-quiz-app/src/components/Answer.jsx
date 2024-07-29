@@ -25,6 +25,7 @@ export default function Answer({
             <button
               className={cl}
               onClick={() => onSaveAnswer(answer)}
+              disabled={selectedAnswer}
             >
               {answer}
             </button>
