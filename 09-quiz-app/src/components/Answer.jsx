@@ -3,7 +3,7 @@ import { useRef } from "react";
 export default function Answer({
   answers,
   selectedAnswer,
-  isCorrect,
+  answerState,
   onSaveAnswer,
 }) {
   const shuffledAnswers = useRef();
@@ -16,17 +16,16 @@ export default function Answer({
     <div id="answers">
       {shuffledAnswers.current.map((answer) => {
         let cl = "";
-
         if (selectedAnswer === answer) {
-          cl = "answered";
-          if (isCorrect != null) {
-            cl = isCorrect ? "correct" : "wrong";
-          }
+          cl = answerState;
         }
 
         return (
           <li key={answer} className="answer">
-            <button className={cl} onClick={() => onSaveAnswer(answer)}>
+            <button
+              className={cl}
+              onClick={() => onSaveAnswer(answer)}
+            >
               {answer}
             </button>
           </li>

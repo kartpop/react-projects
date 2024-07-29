@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function QuizTimer({ timeout, onTimeout }) {
+export default function QuizTimer({ timeout, onTimeout, mode }) {
   const [remainingTime, setRemainingTime] = useState(timeout);
 
   useEffect(() => { // without useEffect, setInterval would be called on every render after setRemainingTime is called causing multiple timers to run
@@ -23,5 +23,5 @@ export default function QuizTimer({ timeout, onTimeout }) {
     };
   }, [onTimeout, timeout]);
 
-  return <progress id="progress" max={timeout} value={remainingTime}></progress>;
+  return <progress id="progress" max={timeout} value={remainingTime} className={mode}></progress>;
 }
