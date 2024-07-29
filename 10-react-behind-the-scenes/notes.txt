@@ -4,3 +4,6 @@
     - as with other optimizations, do it only when impact is seen, not pre-emptively
 
 - Alternative to memo - put frequenty changing states in a separate component so only that renders frequently (eg. text input keystroke change, counter clicks etc.)
+
+- useCallback() in conjuction with memo()
+    - if the prop is a function pointer and nothing in the function dependency changes except for the fact that the parent component function re-renderes, the function pointer will get a new value; the prop value check in memo may take this as a change and may unnessarily trigger rerender of child component; therefore it would be useful to wrap the function used as prop inside useCallback to prevent function pointer value change
