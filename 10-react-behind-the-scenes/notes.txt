@@ -9,3 +9,8 @@
     - if the prop is a function pointer and nothing in the function dependency changes except for the fact that the parent component function re-renderes, the function pointer will get a new value; the prop value check in memo may take this as a change and may unnessarily trigger rerender of child component; therefore it would be useful to wrap the function used as prop inside useCallback to prevent function pointer value change
 
 - useMemo() is like memo() but for any function; memo() only works with component functions
+
+- React uses Virtual DOM
+    - it first constructs the DOM in memory, compares it with previous state of DOM in memory and only makes the diff changes in actual DOM in browser
+    - browser DOM changes are expensive, this strategy reduces expensive updates
+    - therefore, just because a component is rerendered does not mean that the corresponding html elements in it and in all its children are actually updated in the real DOM; only the necessary ones are
