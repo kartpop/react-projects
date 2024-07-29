@@ -2,3 +2,5 @@
     - use it as high up in the component tree as possible: as blocking a component execution there will also block all child component executions (more bang for buck)
     - memo() checks for prop change which can also impact performance: if the component props change frequently, the component would anyway render after prop check; the unnecessary prop checks can impact performance then
     - as with other optimizations, do it only when impact is seen, not pre-emptively
+
+- Alternative to memo - put frequenty changing states in a separate component so only that renders frequently (eg. text input keystroke change, counter clicks etc.)
