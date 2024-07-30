@@ -18,7 +18,7 @@ export default function Login() {
     }));
   }
 
-  const invalidEmail = !(formInputs.email.includes("@")) 
+  const invalidEmail = formInputs.email != "" && !(formInputs.email.includes("@")) 
 
   return (
     <form onSubmit={handleSubmit}>
