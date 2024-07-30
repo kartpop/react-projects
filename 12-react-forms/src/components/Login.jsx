@@ -22,6 +22,8 @@ export default function Login() {
   // }
 
   // following is not recommended, should be done with care; therefore resetting values with refs is difficult
+  // because this is imperatively updating DOM, which is not recommended in React - React should be left to manage the DOM
+  // React: declarative, not imperative
   // email.current.value = "";
   // password.current.value = "";
 
