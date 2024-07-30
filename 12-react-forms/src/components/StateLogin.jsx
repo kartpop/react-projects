@@ -6,6 +6,11 @@ export default function Login() {
     password: "",
   });
 
+  const [editedFormInputs, setEditedFormInputs] = useState({
+    email: false,
+    password: false,
+  });
+
   function handleSubmit(event) {
     event.preventDefault();
     console.log(formInputs);
@@ -18,7 +23,15 @@ export default function Login() {
     }));
   }
 
-  const invalidEmail = formInputs.email != "" && !(formInputs.email.includes("@")) 
+  function handleEditedFormInputs(identifier) {
+    setEditedFormInputs((prev) => ({
+      ...prev,
+      [identifier]: true,
+    }));
+  }
+
+
+  const invalidEmail = editedFormInputs.email && !(formInputs.email.includes("@")) 
 
   return (
     <form onSubmit={handleSubmit}>
@@ -31,6 +44,7 @@ export default function Login() {
             id="email"
             type="email"
             name="email"
+            onBlur={() => handleEditedFormInputs("email")}
             onChange={(event) =>
               handleChangeFormInputs("email", event.target.value)
             }
