@@ -1,16 +1,24 @@
+import { useState } from "react";
+
 export default function Signup() {
+  const [passwordsMismatch, setPasswordsMismatch] = useState(false);
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        
-        const fd = new FormData(event.target);
-        const acquisitionChannel = fd.getAll('acquisition');
-        const data = Object.fromEntries(fd.entries());
-        data.acquisition = acquisitionChannel;
-        console.log(data);
+  function handleSubmit(event) {
+    event.preventDefault();
 
-        event.target.reset();   // this is the same as setting button type="reset"
+    const fd = new FormData(event.target);
+    const acquisitionChannel = fd.getAll("acquisition");
+    const data = Object.fromEntries(fd.entries());
+    data.acquisition = acquisitionChannel;
+
+    if (data.password !== data["confirm-password"]) {
+      setPasswordsMismatch(true);
+      return;
     }
+
+    console.log(data);
+    event.target.reset(); // this is the same as setting button type="reset"
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -19,13 +27,19 @@ export default function Signup() {
 
       <div className="control">
         <label htmlFor="email">Email</label>
-        <input id="email" type="email" name="email" required/>
+        <input id="email" type="email" name="email" required />
       </div>
 
       <div className="control-row">
         <div className="control">
           <label htmlFor="password">Password</label>
-          <input id="password" type="password" name="password" required minLength={6} />
+          <input
+            id="password"
+            type="password"
+            name="password"
+            required
+            minLength={6}
+          />
         </div>
 
         <div className="control">
@@ -37,6 +51,9 @@ export default function Signup() {
             required
             minLength={6}
           />
+          <div className="control-error">
+            {passwordsMismatch && <p>Passwords do not match</p>}
+          </div>
         </div>
       </div>
 
@@ -95,8 +112,13 @@ export default function Signup() {
 
       <div className="control">
         <label htmlFor="terms-and-conditions">
-          <input type="checkbox" id="terms-and-conditions" name="terms" required />I
-          agree to the terms and conditions
+          <input
+            type="checkbox"
+            id="terms-and-conditions"
+            name="terms"
+            required
+          />
+          I agree to the terms and conditions
         </label>
       </div>
 
