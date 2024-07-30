@@ -5,8 +5,8 @@ export default function Login() {
   //   email: "",
   //   password: "",
   // });
-    const email = useRef("");
-    const password = useRef("");
+    const email = useRef();
+    const password = useRef();
 
 
   function handleSubmit(event) {
@@ -22,8 +22,8 @@ export default function Login() {
   // }
 
   // following is not recommended, should be done with care; therefore resetting values with refs is difficult
-  email.current.value = "";
-  password.current.value = "";
+  // email.current.value = "";
+  // password.current.value = "";
 
   return (
     <form onSubmit={handleSubmit}>
