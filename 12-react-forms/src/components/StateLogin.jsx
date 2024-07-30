@@ -14,6 +14,13 @@ export default function Login() {
   function handleSubmit(event) {
     event.preventDefault();
     console.log(formInputs);
+
+    // should validate all inputs before sending data to the server
+    // even if we are validating on every key input
+    // because every key input validation is for user experience - does not really prevent user from submitting invalid data
+
+
+    // ....send data to server
   }
 
   function handleChangeFormInputs(identifier, value) {
