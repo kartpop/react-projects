@@ -59,7 +59,7 @@ function App() {
     }
 
     setModalIsOpen(false);
-  }, []);
+  }, [userPlaces]);
 
   const handleErrorModalClose = () => setErrorUpdating(null);
 
