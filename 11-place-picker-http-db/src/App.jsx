@@ -1,10 +1,11 @@
-import { useRef, useState, useCallback } from 'react';
-import { updateUserPlaces } from './http.js';
-import Places from './components/Places.jsx';
-import Modal from './components/Modal.jsx';
-import DeleteConfirmation from './components/DeleteConfirmation.jsx';
-import logoImg from './assets/logo.png';
-import AvailablePlaces from './components/AvailablePlaces.jsx';
+import { useRef, useState, useCallback } from "react";
+import { updateUserPlaces } from "./http.js";
+import Places from "./components/Places.jsx";
+import Modal from "./components/Modal.jsx";
+import DeleteConfirmation from "./components/DeleteConfirmation.jsx";
+import logoImg from "./assets/logo.png";
+import AvailablePlaces from "./components/AvailablePlaces.jsx";
+import ErrorComponent from "./components/ErrorComponent.jsx";
 
 function App() {
   const selectedPlace = useRef();
@@ -12,6 +13,8 @@ function App() {
   const [userPlaces, setUserPlaces] = useState([]);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const [errorUpdating, setErrorUpdating] = useState();
 
   function handleStartRemovePlace(place) {
     setModalIsOpen(true);
@@ -24,6 +27,7 @@ function App() {
 
   async function handleSelectPlace(selectedPlace) {
     setUserPlaces((prevPickedPlaces) => {
+      // optimistic updating: first update the UI, then the backend
       if (!prevPickedPlaces) {
         prevPickedPlaces = [];
       }
@@ -34,9 +38,11 @@ function App() {
     });
 
     try {
-        await updateUserPlaces([...userPlaces, selectedPlace]);
+      // update the backend
+      await updateUserPlaces([...userPlaces, selectedPlace]);
     } catch (error) {
-      // ...
+      setUserPlaces(userPlaces); // revert the UI changes
+      setErrorUpdating(error);
     }
   }
 
@@ -48,8 +54,19 @@ function App() {
     setModalIsOpen(false);
   }, []);
 
+  const handleErrorModalClose = () => setErrorUpdating(null);
+
   return (
     <>
+      <Modal open={!!errorUpdating} onClose={handleErrorModalClose}>
+        {errorUpdating && (
+          <ErrorComponent
+            title="Error"
+            message={errorUpdating.message}
+            onConfirm={handleErrorModalClose}
+          />
+        )}
+      </Modal>
       <Modal open={modalIsOpen} onClose={handleStopRemovePlace}>
         <DeleteConfirmation
           onCancel={handleStopRemovePlace}
