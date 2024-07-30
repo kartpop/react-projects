@@ -21,6 +21,12 @@ export default function Login() {
       ...prev,
       [identifier]: value,
     }));
+
+    // remove error message if user starts typing again - better user experience 
+    setEditedFormInputs((prev) => ({
+      ...prev,
+      [identifier]: false,
+    }));
   }
 
   function handleEditedFormInputs(identifier) {
