@@ -1,22 +1,29 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function Login() {
-  const [formInputs, setFormInputs] = useState({
-    email: "",
-    password: "",
-  });
+  // const [formInputs, setFormInputs] = useState({
+  //   email: "",
+  //   password: "",
+  // });
+    const email = useRef("");
+    const password = useRef("");
+
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(formInputs);
+    console.log(email.current.value, password.current.value);
   }
 
-  function handleChangeFormInputs(identifier, value) {
-    setFormInputs((prev) => ({
-      ...prev,
-      [identifier]: value,
-    }));
-  }
+  // function handleChangeFormInputs(identifier, value) {
+  //   setFormInputs((prev) => ({
+  //     ...prev,
+  //     [identifier]: value,
+  //   }));
+  // }
+
+  // following is not recommended, should be done with care; therefore resetting values with refs is difficult
+  email.current.value = "";
+  password.current.value = "";
 
   return (
     <form onSubmit={handleSubmit}>
@@ -29,10 +36,11 @@ export default function Login() {
             id="email"
             type="email"
             name="email"
-            onChange={(event) =>
-              handleChangeFormInputs("email", event.target.value)
-            }
-            value={formInputs.email}
+            ref={email}
+            // onChange={(event) =>
+            //   handleChangeFormInputs("email", event.target.value)
+            // }
+            // value={formInputs.email}
           />
         </div>
 
@@ -42,10 +50,11 @@ export default function Login() {
             id="password"
             type="password"
             name="password"
-            onChange={(event) =>
-              handleChangeFormInputs("password", event.target.value)
-            }
-            value={formInputs.password}
+            ref={password}
+            // onChange={(event) =>
+            //   handleChangeFormInputs("password", event.target.value)
+            // }
+            // value={formInputs.password}
           />
         </div>
       </div>
