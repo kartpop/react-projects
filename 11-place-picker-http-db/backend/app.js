@@ -5,7 +5,7 @@ import express from 'express';
 
 const app = express();
 
-app.use(express.static('images'));  // exposes images folder to the web
+app.use(express.static('images'));  // exposes images folder to the web 
 app.use(bodyParser.json());
 
 // CORS
