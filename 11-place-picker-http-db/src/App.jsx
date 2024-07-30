@@ -42,7 +42,7 @@ function App() {
       await updateUserPlaces([...userPlaces, selectedPlace]);
     } catch (error) {
       setUserPlaces(userPlaces); // revert the UI changes
-      setErrorUpdating(error);
+      setErrorUpdating({message: error.message} || {message: "An error occurred updating places."});
     }
   }
 
@@ -50,6 +50,13 @@ function App() {
     setUserPlaces((prevPickedPlaces) =>
       prevPickedPlaces.filter((place) => place.id !== selectedPlace.current.id)
     );
+
+    try {
+      await updateUserPlaces(userPlaces.filter((place) => place.id !== selectedPlace.current.id));
+    } catch (error) {
+      setUserPlaces(userPlaces); // revert the UI changes
+      setErrorUpdating({message: error.message} || {message: "An error occurred updating places."});
+    }
 
     setModalIsOpen(false);
   }, []);
