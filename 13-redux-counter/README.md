@@ -1,4 +1,4 @@
-Redux counter and login
+## Redux counter
 
 An app to practice state-management with Redux store.
 

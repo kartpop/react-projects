@@ -1,4 +1,4 @@
-Timer Challenge
+## Timer Challenge
 
 An app to practice Refs and Portals
 

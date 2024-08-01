@@ -1,4 +1,4 @@
-Shopping Cart
+## Shopping Cart
 
 An app to practice Context API and useReducer hook
 

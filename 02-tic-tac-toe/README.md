@@ -1,4 +1,4 @@
-Game: Tic-tac-toe
+## Game: Tic-tac-toe
 
 An app to continue learning React Essentials - State management deep dive, Lifting state up 
 

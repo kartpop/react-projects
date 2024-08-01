@@ -1,4 +1,4 @@
-Place Picker
+## Place Picker
 
 An app to practice calling http requests and creating custom hooks.
 

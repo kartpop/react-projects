@@ -1,4 +1,4 @@
-Quiz App
+## Quiz App
 
 A practice app: timers, useEffect, handling side-effects, moving sate down
 

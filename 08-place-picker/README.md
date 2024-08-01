@@ -1,4 +1,4 @@
-Place picker
+## Place picker
 
 An app to practice state management: useEffect, useCallback
 

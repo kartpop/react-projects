@@ -1,4 +1,4 @@
-Investment Calculator
+## Investment Calculator
 
 An app to practice learning React fundamentals
 

@@ -1,4 +1,4 @@
-React Forms
+## React Forms
 
 An app to practice input data management in React forms.
 

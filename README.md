@@ -13,5 +13,6 @@ Projects from [React - The Complete Guide](https://www.udemy.com/course/react-th
 - [11-place-picker-http-db](./11-place-picker-http-db/): http requests, custom hooks
 - [12-react-forms](./12-react-forms/): manage input data in forms - useEffect, useRef, FormData, custom hooks
 - [13-redux-counter](./13-redux-counter/): redux, redux toolkit
+- [14-redux-cart](./14-redux-cart/): advanced redux, action creator thunk, redux devtools
 
 

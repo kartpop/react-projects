@@ -1,4 +1,15 @@
-Redux Cart
+## Redux Cart
+
+An app to practice advanced redux concepts like action creator thunk.
+
+To run locally, clone the repository and navigate to the project root directory. Run the following commands in the terminal (assuming npm is installed).
+
+```bash
+npm install
+npm start
+```
+
+![Redux Cart](./images/redux-cart.png)
 
 
 ### Notes
@@ -14,3 +25,6 @@ Redux Cart
     - Option1: First update state in front-end, then send updated state to database using http request. Use fat reducer for cart logic, subscribe to cart changes in any component (say root level App.js), send http request with useEffect(). 
 
     - Option2: Use action creator thunk - a function that delays an action until later. **Thunk** is an action creator function that **does NOT return the action itself** but instead returns **a function which eventually returns the action**.
+
+- Redux devtools in Chrome browser
+    - full snapshot of current state, actions performed, diff, trace, time-travel (jump to previous state) and more...
