@@ -12,3 +12,5 @@ Redux Cart
     ![Where-should-logic-go](./images/where-should-logic-go.png)
 
     - Option1: First update state in front-end, then send updated state to database using http request. Use fat reducer for cart logic, subscribe to cart changes in any component (say root level App.js), send http request with useEffect(). 
+
+    - Option2: Use action creator thunk - a function that delays an action until later. **Thunk** is an action creator function that **does NOT return the action itself** but instead returns **a function which eventually returns the action**.
