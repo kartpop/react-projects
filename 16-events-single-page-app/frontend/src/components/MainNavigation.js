@@ -1,5 +1,5 @@
-import classes from './MainNavigation.module.css';
-import { Link } from 'react-router-dom';
+import classes from "./MainNavigation.module.css";
+import { NavLink } from "react-router-dom";
 
 function MainNavigation() {
   return (
@@ -8,11 +8,26 @@ function MainNavigation() {
         <ul className={classes.list}>
           <li>
             {/* absolute path is intentional - always want to go to the root */}
-            <Link to="/">Home</Link>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+              end
+            >
+              Home
+            </NavLink>
           </li>
           <li>
             {/* absolute path is intentional - always want to go to the root --> events */}
-            <Link to="/events">Events</Link>
+            <NavLink
+              to="/events"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Events
+            </NavLink>
           </li>
         </ul>
       </nav>
