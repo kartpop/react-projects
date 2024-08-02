@@ -27,18 +27,6 @@ function ProductsPage() {
           </li>
         ))}
       </ul>
-      <p>
-        These links will not work, because the product.id which is an int is
-        passed direclty to the 'to' prop of Link element. React Router expects a
-        string, so it will not work.
-      </p>
-      <ul>
-        {PRODUCTS2.map((product) => (
-          <li key={product.id}>
-            <Link to={product.id}>{product.name}</Link>
-          </li>
-        ))}
-      </ul>
     </>
   );
 }
