@@ -4,7 +4,7 @@
 
 - The `Link` element's `to` prop expects a string. If a `product.id` is of type int, the following will not work ```<Link to={product.id}>```, but the following will ```<Link to={`${product.id}`}>```. In the latter, we correctly use a template literal to convert the int to a string before passing it.
 
-- <u>Route vs Path</u>: The way we have defined our routes,
+- **Route vs Path**: The way we have defined our routes,
 
 ```
   {

@@ -16,10 +16,6 @@ function ProductsPage() {
   return (
     <>
       <h1>The Products page</h1>
-      <p>
-        These links will work, because the product.id which is an int is
-        converted to a string by using template literal.
-      </p>
       <ul>
         {PRODUCTS.map((product) => (
           <li key={product.id}>
