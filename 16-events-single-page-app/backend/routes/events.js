@@ -13,9 +13,9 @@ router.get("/", async (req, res, next) => {
   try {
     const events = await getAll();
     // temporary delay to simulate slow network
-    setTimeout(() => {
+    // setTimeout(() => {
       res.json({ events: events });
-    }, 1500);
+    // }, 1500);
   } catch (error) {
     next(error);
   }
