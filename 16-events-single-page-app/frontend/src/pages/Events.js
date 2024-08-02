@@ -3,7 +3,12 @@ import EventsList from "../components/EventsList";
 
 function EventsPage() {
   const response = useLoaderData();
-    const events = response.events;
+
+  if (response.isError) {
+    return <p>{response.message}</p>;
+  }
+
+  const events = response.events;
 
   return (
     <>
@@ -18,8 +23,8 @@ export async function loader() {
   const response = await fetch("http://localhost:8080/events");
 
   if (!response.ok) {
-    // TODO
+    return { isError: true, message: `Failed to load: ${response.statusText}` };
   } else {
     return response;
-}
+  }
 }
