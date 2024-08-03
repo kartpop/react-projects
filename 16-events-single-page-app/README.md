@@ -6,3 +6,5 @@
     - One way of showing loading message: use `react-router-dom`'s `navigation.state` (`idle`, `loading`, `submitting`) to determine if we want to show the loading message. This should be done in a root component though like RootLayout in our case which is already rendered (not in the component which will use the asynchronously fetched data).
 
 - React Router `loader` cannot use hooks (useState, useEffect etc.) as they are not part of React components. But as they execute in the browser, they can use all other browser builtin functions (navigator, browser cache etc.)
+
+- `useLoaderData()` should only be used when `loader` is directly provided at the `element` in `createBrowserRouter`. But if `loader` is provided at a parent level, use `useRouteLoaderData('route-id')` instead - where `'route-id'` is the `id` given to the parent `element`.
