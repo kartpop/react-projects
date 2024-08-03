@@ -8,3 +8,5 @@
 - React Router `loader` cannot use hooks (useState, useEffect etc.) as they are not part of React components. But as they execute in the browser, they can use all other browser builtin functions (navigator, browser cache etc.)
 
 - `useLoaderData()` should only be used when `loader` is directly provided at the `element` in `createBrowserRouter`. But if `loader` is provided at a parent level, use `useRouteLoaderData('route-id')` instead - where `'route-id'` is the `id` given to the parent `element`.
+
+- `action` functions are often used to submit `Form` data to backend using react router. They are hooked to a route in `createBrowserRouter` and are automatically triggered when that route is active and when any `Form` displayed on that route is submitted. If any other action apart from the one belonging to the currently active path/route must be triggered, then the path/route for that action must be specified: `<Form method='post' action='any/other/path'>`.
