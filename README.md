@@ -14,5 +14,6 @@ Projects from [React - The Complete Guide](https://www.udemy.com/course/react-th
 - [12-react-forms](./12-react-forms/): manage input data in forms - useEffect, useRef, FormData, custom hooks
 - [13-redux-counter](./13-redux-counter/): redux, redux toolkit
 - [14-redux-cart](./14-redux-cart/): advanced redux, action creator thunk, redux devtools
-
+- [15-single-page-app](./15-single-page-app/): basics of react router - createBrowserRouter, Link etc.
+- [16-events-single-page-app](./16-events-single-page-app): react router advanced - loader(), action(), useFetcher(), defer etc.
 
