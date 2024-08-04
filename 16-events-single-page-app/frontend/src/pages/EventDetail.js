@@ -55,8 +55,8 @@ async function fetchEvents() {
 
 export async function loader({ params }) {
   return defer({
-    event: fetchEvent(params.eventId),
-    events: fetchEvents(),
+    event: await fetchEvent(params.eventId), // await here makes sure that the page is only displayed after evnetDetails are fetched
+    events: fetchEvents(),  // no await here - unlike above this is not the primary info for the page, so can render concurrently with a loading message
   });
 }
 
