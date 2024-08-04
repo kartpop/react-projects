@@ -8,7 +8,9 @@ function EventsList({ events }) {
       <ul className={classes.list}>
         {events.map((event) => (
           <li key={event.id} className={classes.item}>
-            <Link to={event.id}>
+            {/* We must provide absolute path to the Link component now as relative path will fail. 
+            Events list is now loaded on two different pages/routes */}
+            <Link to={`/events/${event.id}`}>
               <img src={event.image} alt={event.title} />
               <div className={classes.content}>
                 <h2>{event.title}</h2>

@@ -22,7 +22,7 @@ function EventsPage() {
 
 export default EventsPage;
 
-async function fetchEvent() {
+async function fetchEvents() {
   const response = await fetch("http://localhost:8080/events");
 
   if (!response.ok) {
@@ -35,6 +35,6 @@ async function fetchEvent() {
 
 export async function loader() {
   return defer({
-    events: fetchEvent(),
+    events: fetchEvents(),
   });
 }
