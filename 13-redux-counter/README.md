@@ -6,5 +6,5 @@ To run locally, clone the repository and navigate to the project root directory.
 
 ```bash
 npm install
-npm run dev
+npm start
 ```
