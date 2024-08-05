@@ -8,7 +8,8 @@ export default function NewEventsSection() {
   const { data, isPending, isError, error } = useQuery({
     queryKey: ['events'],
     queryFn: fetchEvents,
-
+    staleTime: 5000,  // time in ms after which tanstack query will still yield cached data, but will send a backend request to update
+    gcTime: 1000, // time in ms after which data will be garbage collected, so tanstack can only yield the data after backend responds
   });
 
   let content;
