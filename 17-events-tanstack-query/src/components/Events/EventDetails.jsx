@@ -1,11 +1,14 @@
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "../Header.jsx";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { fetchEvent, deleteEvent, queryClient } from "../../util/http.js";
 import ErrorBlock from "../UI/ErrorBlock.jsx";
+import Modal from "../UI/Modal.jsx";
 
 export default function EventDetails() {
+  const [isDeleting, setIsDeleting] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
 
@@ -17,13 +20,24 @@ export default function EventDetails() {
   const { mutate } = useMutation({
     mutationFn: deleteEvent,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["events"] });
+      queryClient.invalidateQueries({
+        queryKey: ["events"],
+        refetchType: "none",
+      });
       navigate("/events");
     },
   });
 
   function handleDelete() {
     mutate({ id: params.id });
+  }
+
+  function handleIsDeleting() {
+    setIsDeleting(true);
+  }
+
+  function handleCancelDelete() {
+    setIsDeleting(false);
   }
 
   let content;
@@ -56,10 +70,24 @@ export default function EventDetails() {
 
     content = (
       <>
+        {isDeleting && (
+          <Modal onClose={handleCancelDelete}>
+            <h1>Are you sure?</h1>
+            <p>This event cannot be recovered once deleted.</p>
+            <div className="form-actions">
+              <button onClick={handleCancelDelete} className="button-text">
+                Cancel
+              </button>
+              <button onClick={handleDelete} className="button">
+                Delete
+              </button>
+            </div>
+          </Modal>
+        )}
         <header>
           <h1>{data.title}</h1>
           <nav>
-            <button onClick={handleDelete}>Delete</button>
+            <button onClick={handleIsDeleting}>Delete</button>
             <Link to="edit">Edit</Link>
           </nav>
         </header>
