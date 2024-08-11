@@ -16,4 +16,6 @@ Projects from [React - The Complete Guide](https://www.udemy.com/course/react-th
 - [14-redux-cart](./14-redux-cart/): advanced redux, action creator thunk, redux devtools
 - [15-single-page-app](./15-single-page-app/): basics of react router - createBrowserRouter, Link etc.
 - [16-events-single-page-app](./16-events-single-page-app): react router advanced - loader(), action(), useFetcher(), defer etc.
+- [17-evetns-tanstack-query](./17-events-tanstack-query): tanstack react query - CRUD, caching, optimistic updating, refetching etc.
+
 

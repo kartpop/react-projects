@@ -1,5 +1,7 @@
 ### React Events - Tanstack Query
 
+An app to practice Tanstack's react query - CRUD operations, optmistic updating, caching, refetching etc.
+
 To run locally, clone the repository and navigate to the project root directory. 
 
 Run dummy backend (assuming node is installed). Navigate to `/backend` from project root and run:
@@ -17,8 +19,9 @@ npm install @tanstack/react-query
 npm run dev
 ```
 
+![React Events - Tanstack Query](./src/assets/react-events.png)
 
-# React + Vite
+# React + Vite (part of starter-code)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
