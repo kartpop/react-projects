@@ -4,7 +4,7 @@ function App() {
   return (
     <>
       <div>
-        <Todos></Todos>
+        <Todos items={["Learn React", "Learn GenAI"]}></Todos>
       </div>
     </>
   )
