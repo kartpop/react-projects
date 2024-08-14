@@ -13,11 +13,17 @@ function App() {
     });
   };
 
+  const handleTodoItemClick = (id: string) => {
+    setTodos((prevTodos) => {
+      return prevTodos.filter((todo) => todo.id !== id);
+    });
+  };
+
   return (
     <>
       <div>
         <NewTodo onAddTodo={handleAddTodo}></NewTodo>
-        <Todos items={todos}></Todos>
+        <Todos items={todos} onTodoItemClick={handleTodoItemClick}></Todos>
       </div>
     </>
   );
