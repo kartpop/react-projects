@@ -17,7 +17,8 @@ const Todos: React.FC<{
         <TodoItem
           key={item.id}
           text={item.text}
-          onClick={() => onTodoItemClick(item.id)}
+          // onClick={() => onTodoItemClick(item.id)} // creates a new function on every re-render
+          onClick={onTodoItemClick.bind(null, item.id)} // reuses the same function - performance optimization
         />
       ))}
     </ul>
