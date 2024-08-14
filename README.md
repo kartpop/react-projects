@@ -17,5 +17,6 @@ Projects from [React - The Complete Guide](https://www.udemy.com/course/react-th
 - [15-single-page-app](./15-single-page-app/): basics of react router - createBrowserRouter, Link etc.
 - [16-events-single-page-app](./16-events-single-page-app): react router advanced - loader(), action(), useFetcher(), defer etc.
 - [17-events-tanstack-query](./17-events-tanstack-query): tanstack react query - CRUD, caching, optimistic updating, refetching etc.
+- [18-react-ts](./18-react-ts): react with typescript
 
 

@@ -1,3 +1,14 @@
+### React with Typescript
+
+An app to practice building in React using typescript.
+
+To run locally, navigate to the root folder of this project and then in the terminal:
+
+```bash
+npm install
+npm run dev
+```
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
