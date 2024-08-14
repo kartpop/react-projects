@@ -1,24 +1,18 @@
-import React from "react";
-import Todo from "../models/todo";
+import React, { useContext } from "react";
 import TodoItem from "./TodoItem";
 import classes from "./Todos.module.css";
+import { TodosContext } from "../store/todos-context";
 
-const Todos: React.FC<{
-  items: Todo[];
-  onTodoItemClick: (id: string) => void;
-}> = (props) => {
-  const onTodoItemClick = (id: string) => {
-    props.onTodoItemClick(id);
-  };
+const Todos: React.FC = () => {
+  const todosCtx = useContext(TodosContext);
 
   return (
     <ul className={classes.todos}>
-      {props.items.map((item) => (
+      {todosCtx.items.map((item) => (
         <TodoItem
           key={item.id}
           text={item.text}
-          // onClick={() => onTodoItemClick(item.id)} // creates a new function on every re-render
-          onClick={onTodoItemClick.bind(null, item.id)} // reuses the same function - performance optimization
+          onClick={todosCtx.removeTodo.bind(null, item.id)} // bind reuses the same function - performance optimization
         />
       ))}
     </ul>
