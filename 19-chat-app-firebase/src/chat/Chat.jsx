@@ -27,7 +27,101 @@ const Chat = () => {
           <img src="./info.png" alt="" />
         </div>
       </div>
-      <div className="center"></div>
+      <div className="center">
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>
+              Hello! How are you doing? I hope you are having a great day. I am
+              just checking in to see how you are doing.
+              Blah Blah Blah...
+              Just want to write some long text to see how it looks.
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+        <div className="message own">
+          <div className="texts">
+            <p>
+              Hello! How are you doing? I hope you are having a great day. I am
+              just checking in to see how you are doing.
+              Blah Blah Blah...
+              Just want to write some long text to see how it looks.
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>
+              Hello! How are you doing? I hope you are having a great day. I am
+              just checking in to see how you are doing.
+              Blah Blah Blah...
+              Just want to write some long text to see how it looks.
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+        <div className="message own">
+          <div className="texts">
+            <p>
+              Hello! How are you doing? I hope you are having a great day. I am
+              just checking in to see how you are doing.
+              Blah Blah Blah...
+              Just want to write some long text to see how it looks.
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>
+              Hello! How are you doing? I hope you are having a great day. I am
+              just checking in to see how you are doing.
+              Blah Blah Blah...
+              Just want to write some long text to see how it looks.
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+        <div className="message own">
+          <div className="texts">
+            <p>
+              Hello! How are you doing? I hope you are having a great day. I am
+              just checking in to see how you are doing.
+              Blah Blah Blah...
+              Just want to write some long text to see how it looks.
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>
+              Hello! How are you doing? I hope you are having a great day. I am
+              just checking in to see how you are doing.
+              Blah Blah Blah...
+              Just want to write some long text to see how it looks.
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+        <div className="message">
+          <img src="./avatar.png" alt="" />
+          <div className="texts">
+            <p>
+              Hello! How are you doing? I hope you are having a great day. I am
+              just checking in to see how you are doing.
+              Blah Blah Blah...
+              Just want to write some long text to see how it looks.
+            </p>
+            <span>1 min ago</span>
+          </div>
+        </div>
+      </div>
       <div className="bottom">
         <div className="icons">
           <img src="./img.png" alt="" />

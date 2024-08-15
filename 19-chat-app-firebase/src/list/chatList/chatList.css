@@ -3,22 +3,27 @@
   overflow: auto;
   position: relative;
 
-  &::-webkit-scrollbar {
-    width: 0; /* Hide the scrollbar by default */
-  }
+    /* Scrollbar width  is kept constant at 8px - visibility is controlled with opacity. */
+    /* If visibility is controlled by keeping default width 0 and then providing a non-zero width, 
+    the scrollbar pushes existing elements by 8px when it appears on hover */
 
-  &:hover::-webkit-scrollbar {
-    width: 8px; /* Show the scrollbar on hover */
-  }
+    &::-webkit-scrollbar {
+      width: 8px;
+      background-color: transparent; 
+    }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: rgba(17, 25, 40, 0.5); /* Modern scrollbar color */
-    border-radius: 10px; /* Rounded corners for the scrollbar */
-  }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(17, 25, 40, 0.01); /* almost invisible by default, but keep non-zero opacity */
+      border-radius: 10px;
+    }
 
-  &::-webkit-scrollbar-track {
-    background: transparent; /* Transparent track */
-  }
+    &:hover::-webkit-scrollbar-thumb {
+      background-color: rgba(17, 25, 40, 0.5); /* increase opacity on hover */
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
 
   .search {
     display: flex;
