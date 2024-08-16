@@ -18,8 +18,8 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    toast.success("Logged in successfully");
-  }
+    // toast.success("Logged in successfully");
+  };
 
   return (
     <div className="login">
