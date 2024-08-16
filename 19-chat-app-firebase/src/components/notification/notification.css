@@ -1,0 +1,3 @@
+.Toastify__toast-container {
+  overflow: hidden; /* prevent shuddering of components due to temporary appearance of scrollbars causing overflow */
+}
