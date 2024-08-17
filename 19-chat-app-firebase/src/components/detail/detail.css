@@ -93,9 +93,13 @@
         background-color: rgba(230, 74, 105, 0.9);
       }
 
-      &.logout{
+      &.logout {
         padding: 10px;
-        background-color: #1a73e8;
+        background-color: #074da9;
+
+        &:hover {
+          background-color: #1a73e8;
+        }
       }
     }
   }
