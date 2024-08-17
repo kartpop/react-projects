@@ -1,7 +1,10 @@
 import { useState } from "react";
 import "./login.css";
 import { toast } from "react-toastify";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth, db } from "../../lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import upload from "../../lib/upload";
@@ -15,6 +18,8 @@ const Login = () => {
   const [accountCreationInProgress, setAccountCreationInProgress] =
     useState(false);
 
+  const [loginInProgress, setLoginInProgress] = useState(false);
+
   const handleAvatar = (e) => {
     if (e.target.files.length) {
       const file = e.target.files[0];
@@ -23,19 +28,32 @@ const Login = () => {
     }
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // toast.success("Logged in successfully");
+    setLoginInProgress(true);
+
+    const formData = new FormData(e.target);
+    const { email, password } = Object.fromEntries(formData);
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      toast.success("Logged in successfully.");
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    } finally {
+      setLoginInProgress(false);
+    }
   };
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
+    setAccountCreationInProgress(true);
 
+    const formData = new FormData(e.target);
     const { username, email, password } = Object.fromEntries(formData);
 
     try {
-      setAccountCreationInProgress(true);
       const res = await createUserWithEmailAndPassword(auth, email, password);
 
       const imgUrl = await upload(avatar.file);
@@ -68,7 +86,9 @@ const Login = () => {
         <form onSubmit={handleLogin}>
           <input type="text" placeholder="Email" name="email" />
           <input type="password" placeholder="Password" name="password" />
-          <button disabled={accountCreationInProgress}>Login</button>
+          <button disabled={accountCreationInProgress || loginInProgress}>
+            {loginInProgress ? "Logging in..." : "Login"}
+          </button>
         </form>
       </div>
       <div className="separator"></div>
@@ -88,7 +108,7 @@ const Login = () => {
           <input type="text" placeholder="Username" name="username" />
           <input type="text" placeholder="Email" name="email" />
           <input type="password" placeholder="Password" name="password" />
-          <button disabled={accountCreationInProgress}>
+          <button disabled={accountCreationInProgress || loginInProgress}>
             {accountCreationInProgress ? "Creating account..." : "Sign Up"}
           </button>
         </form>
