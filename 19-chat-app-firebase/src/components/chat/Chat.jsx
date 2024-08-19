@@ -2,8 +2,15 @@ import { useEffect, useRef, useState } from "react";
 import EmojiPicker from "emoji-picker-react";
 import "./chat.css";
 import { db } from "../../lib/firebase";
-import { doc, onSnapshot } from "firebase/firestore";
+import {
+  arrayUnion,
+  doc,
+  getDoc,
+  onSnapshot,
+  updateDoc,
+} from "firebase/firestore";
 import { useChatStore } from "../../lib/chatStore";
+import { useUserStore } from "../../lib/userStore";
 
 const Chat = () => {
   const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
@@ -12,12 +19,8 @@ const Chat = () => {
 
   const scrollBottom = useRef(null);
 
-  const { chatId } = useChatStore();
-
-  const handleEmojiSelected = (e) => {
-    setMessage((prev) => prev + e.emoji);
-    setOpenEmojiPicker(false);
-  };
+  const { chatId, user } = useChatStore();
+  const { currentUser } = useUserStore();
 
   useEffect(() => {
     scrollBottom.current.scrollIntoView({ behavior: "smooth" });
@@ -30,6 +33,52 @@ const Chat = () => {
 
     return () => unSub();
   }, [chatId]);
+
+  const handleEmojiSelected = (e) => {
+    setMessage((prev) => prev + e.emoji);
+    setOpenEmojiPicker(false);
+  };
+
+  const handleSend = async () => {
+    if (!message) return;
+
+    // update chats collection
+    try {
+      await updateDoc(doc(db, "chats", chatId), {
+        messages: arrayUnion({
+          senderId: currentUser.id,
+          text: message,
+          createdAt: new Date().toISOString(),
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
+    // update userchats collection for each user
+    const userIDs = [currentUser.id, user.id];
+
+    userIDs.forEach(async (id) => {
+      const userChatsRef = doc(db, "userchats", id);
+      const userChatsSnap = await getDoc(userChatsRef);
+
+      if (userChatsSnap.exists()) {
+        const userChatsData = userChatsSnap.data();
+
+        const chatIndex = userChatsData.chats.findIndex(
+          (c) => c.chatId === chatId
+        );
+
+        userChatsData.chats[chatIndex].lastMessage = message;
+        userChatsData.chats[chatIndex].updatedAt = new Date().toISOString();
+        userChatsData.chats[chatIndex].isSeen = id === currentUser.id;
+
+        await updateDoc(userChatsRef, {
+          chats: userChatsData.chats,
+        });
+      }
+    });
+  };
 
   console.log(chat);
 
@@ -87,7 +136,9 @@ const Chat = () => {
             />
           </div>
         </div>
-        <button className="sendButton">Send</button>
+        <button className="sendButton" onClick={handleSend}>
+          Send
+        </button>
       </div>
     </div>
   );
