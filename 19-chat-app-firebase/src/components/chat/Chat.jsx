@@ -1,12 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import EmojiPicker from "emoji-picker-react";
 import "./chat.css";
+import { db } from "../../lib/firebase";
+import { doc, onSnapshot } from "firebase/firestore";
+import { useChatStore } from "../../lib/chatStore";
 
 const Chat = () => {
   const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
   const [message, setMessage] = useState("");
+  const [chat, setChat] = useState(null);
 
   const scrollBottom = useRef(null);
+
+  const { chatId } = useChatStore();
 
   const handleEmojiSelected = (e) => {
     setMessage((prev) => prev + e.emoji);
@@ -16,6 +22,16 @@ const Chat = () => {
   useEffect(() => {
     scrollBottom.current.scrollIntoView({ behavior: "smooth" });
   }, []);
+
+  useEffect(() => {
+    const unSub = onSnapshot(doc(db, "chats", chatId), (res) => {
+      setChat(res.data());
+    });
+
+    return () => unSub();
+  }, [chatId]);
+
+  console.log(chat);
 
   return (
     <div className="chat">
@@ -34,95 +50,16 @@ const Chat = () => {
         </div>
       </div>
       <div className="center">
-        <div className="message">
-          <img src="./avatar.png" alt="" />
-          <div className="texts">
-            <p>
-              Hello! How are you doing? I hope you are having a great day. I am
-              just checking in to see how you are doing. Blah Blah Blah... Just
-              want to write some long text to see how it looks.
-            </p>
-            <span>1 min ago</span>
+        {chat?.messages?.map((message) => (
+          <div className="message own" key={message?.createdAt}>
+            <div className="texts">
+              {message.img && <img src={message.img} alt="" />}
+              <p>{message.text}</p>
+              {/* <span>1 min ago</span> */}
+            </div>
           </div>
-        </div>
-        <div className="message own">
-          <div className="texts">
-            <p>
-              Hello! How are you doing? I hope you are having a great day. I am
-              just checking in to see how you are doing. Blah Blah Blah... Just
-              want to write some long text to see how it looks.
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-        <div className="message">
-          <img src="./avatar.png" alt="" />
-          <div className="texts">
-            <p>
-              Hello! How are you doing? I hope you are having a great day. I am
-              just checking in to see how you are doing. Blah Blah Blah... Just
-              want to write some long text to see how it looks.
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-        <div className="message own">
-          <div className="texts">
-            <p>
-              Hello! How are you doing? I hope you are having a great day. I am
-              just checking in to see how you are doing. Blah Blah Blah... Just
-              want to write some long text to see how it looks.
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-        <div className="message">
-          <img src="./avatar.png" alt="" />
-          <div className="texts">
-            <p>
-              Hello! How are you doing? I hope you are having a great day. I am
-              just checking in to see how you are doing. Blah Blah Blah... Just
-              want to write some long text to see how it looks.
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-        <div className="message own">
-          <div className="texts">
-            <img
-              src="https://elements-resized.envatousercontent.com/envato-shoebox/788e/e07c-dfca-432e-ab2b-bb38279dead7/_DSC5063%20copy.jpg?w=1400&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=85&format=auto&s=46f3b6a6eb3d2df76edcd112f8e5896e3318317198caa0afd9ad353022a19fb2"
-              alt=""
-            />
-            <p>
-              Hello! How are you doing? I hope you are having a great day. I am
-              just checking in to see how you are doing. Blah Blah Blah... Just
-              want to write some long text to see how it looks.
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-        <div className="message">
-          <img src="./avatar.png" alt="" />
-          <div className="texts">
-            <p>
-              Hello! How are you doing? I hope you are having a great day. I am
-              just checking in to see how you are doing. Blah Blah Blah... Just
-              want to write some long text to see how it looks.
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-        <div className="message">
-          <img src="./avatar.png" alt="" />
-          <div className="texts">
-            <p>
-              Hello! How are you doing? I hope you are having a great day. I am
-              just checking in to see how you are doing. Blah Blah Blah... Just
-              want to write some long text to see how it looks.
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
+        ))}
+
         <div ref={scrollBottom}></div>
       </div>
       <div className="bottom">

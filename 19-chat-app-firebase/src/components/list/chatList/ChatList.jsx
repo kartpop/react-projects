@@ -4,15 +4,22 @@ import AddUser from "./addUser/AddUser";
 import { useUserStore } from "../../../lib/userStore";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../../../lib/firebase";
+import { useChatStore } from "../../../lib/chatStore";
 
 const ChatList = () => {
   const [addMode, setAddMode] = useState(false);
   const [chats, setChats] = useState([]);
 
   const { currentUser } = useUserStore();
+  const { changeChat } = useChatStore();
 
   useEffect(() => {
+    if (!currentUser || !currentUser.id) {
+      console.error("Current user is not defined");
+      return;
+    }
     const unSub = onSnapshot(
+
       doc(db, "userchats", currentUser.id),
       async (userchatsDoc) => {
         const uchats = userchatsDoc.data().chats;
@@ -35,6 +42,10 @@ const ChatList = () => {
     return () => unSub();
   }, [currentUser.id]);
 
+  const handleChatItemClick = (chat) => {
+    changeChat(chat.chatId, chat.user);
+  }
+
   console.log(chats);
 
   return (
@@ -53,7 +64,7 @@ const ChatList = () => {
       </div>
 
       {chats.map((chat) => (
-        <div className="item" key={chat.id}>
+        <div className="item" key={chat.chatId} onClick={() => handleChatItemClick(chat)}>
           <img src={chat.user.avatar} alt="" />
           <div className="texts">
             <span>{chat.user.username}</span>
